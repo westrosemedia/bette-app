@@ -25,7 +25,7 @@ const OnboardingQuiz = ({ onComplete }) => {
     {
       id: 'welcome',
       title: "Welcome to BETTE",
-      subtitle: "Let's train your AI content strategist",
+      subtitle: "Your AI content strategist",
       type: 'welcome',
       icon: SparklesIcon
     },

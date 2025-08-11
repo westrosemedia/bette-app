@@ -5,6 +5,36 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Override pink colors immediately */
+.btn-primary {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+}
+
+.btn-primary:hover {
+  background-color: #1f2937 !important;
+}
+
+.btn-secondary {
+  background-color: #ffffff !important;
+  color: #111827 !important;
+  border-color: #d1d5db !important;
+}
+
+.btn-secondary:hover {
+  background-color: #f9fafb !important;
+}
+
+.card-luxury {
+  background-color: #ffffff !important;
+  border-color: #d1d5db !important;
+}
+
+body {
+  background-color: #f9fafb !important;
+  color: #111827 !important;
+}
+
 @layer base {
   html {
     font-family: 'Inter', system-ui, sans-serif;

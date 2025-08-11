@@ -85,6 +85,9 @@ function App() {
 
   return (
     <div className="min-h-screen bg-gray-50">
+      {/* Hidden div to force Tailwind to generate classes */}
+      <div className="hidden bg-gray-50 bg-gray-100 bg-gray-200 bg-gray-300 bg-gray-400 bg-gray-500 bg-gray-600 bg-gray-700 bg-gray-800 bg-gray-900 bg-black bg-white text-gray-50 text-gray-100 text-gray-200 text-gray-300 text-gray-400 text-gray-500 text-gray-600 text-gray-700 text-gray-800 text-gray-900 text-black text-white border-gray-50 border-gray-100 border-gray-200 border-gray-300 border-gray-400 border-gray-500 border-gray-600 border-gray-700 border-gray-800 border-gray-900 border-black border-white"></div>
+      
       {/* Header */}
       <header className="glass-effect border-b border-gray-200 sticky top-0 z-50 transition-all duration-300">
         <div className="container-luxury px-6">

@@ -102,15 +102,15 @@ const DailyPromptGenerator = () => {
   };
 
   const renderGreeting = () => (
-    <div className="card-luxury animate-bounce-in">
-      <div className="text-center">
-        <div className="w-16 h-16 bg-gradient-to-r from-bette-blush-500 to-bette-gold-500 rounded-full flex items-center justify-center mx-auto mb-6">
-          <SparklesIcon className="h-8 w-8 text-white" />
+    <div className="hero-section">
+      <div className="card-luxury max-w-2xl mx-auto text-center animate-fade-in">
+        <div className="w-20 h-20 bg-vera-black-950 rounded-full flex items-center justify-center mx-auto mb-8">
+          <SparklesIcon className="h-10 w-10 text-vera-white-50" />
         </div>
-        <h2 className="luxury-text text-3xl text-bette-charcoal-900 mb-4">
+        <h2 className="display-text text-4xl text-vera-black-900 mb-6">
           {dailyGreeting}
         </h2>
-        <p className="text-bette-charcoal-600 mb-8">
+        <p className="body-text text-xl text-vera-black-600 mb-12 leading-relaxed">
           Let's create some fire content together. I need to know a few things about your brand first.
         </p>
         <button 
@@ -125,103 +125,109 @@ const DailyPromptGenerator = () => {
   );
 
   const renderBrandTone = () => (
-    <div className="card-luxury animate-slide-up">
-      <h3 className="luxury-text text-2xl text-bette-charcoal-900 mb-6">
-        What's your brand voice?
-      </h3>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-        {BRAND_TONES.map((tone) => (
-          <button
-            key={tone.id}
-            onClick={() => {
-              handleProfileUpdate('brandTone', tone.id);
-              setCurrentStep('content-goal');
-            }}
-            className={`p-4 rounded-xl border-2 transition-all duration-200 text-left ${
-              userProfile.brandTone === tone.id
-                ? 'border-bette-blush-500 bg-bette-blush-50'
-                : 'border-bette-charcoal-200 hover:border-bette-blush-300 hover:bg-bette-blush-50'
-            }`}
-          >
-            <h4 className="font-semibold text-bette-charcoal-900 mb-1">
-              {tone.name}
-            </h4>
-            <p className="text-sm text-bette-charcoal-600">
-              {tone.description}
-            </p>
-          </button>
-        ))}
+    <div className="section">
+      <div className="card-luxury max-w-4xl mx-auto animate-slide-up">
+        <h3 className="display-text text-3xl text-vera-black-900 mb-12 text-center">
+          What's your brand voice?
+        </h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {BRAND_TONES.map((tone) => (
+            <button
+              key={tone.id}
+              onClick={() => {
+                handleProfileUpdate('brandTone', tone.id);
+                setCurrentStep('content-goal');
+              }}
+              className={`p-8 rounded-2xl border-2 transition-all duration-300 text-left hover:shadow-gentle ${
+                userProfile.brandTone === tone.id
+                  ? 'border-vera-black-900 bg-vera-black-950 text-vera-white-50'
+                  : 'border-vera-gray-200 hover:border-vera-black-900 hover:bg-vera-gray-50'
+              }`}
+            >
+              <h4 className="display-text text-xl mb-3">
+                {tone.name}
+              </h4>
+              <p className="body-text text-base opacity-80">
+                {tone.description}
+              </p>
+            </button>
+          ))}
+        </div>
       </div>
     </div>
   );
 
   const renderContentGoal = () => (
-    <div className="card-luxury animate-slide-up">
-      <h3 className="luxury-text text-2xl text-bette-charcoal-900 mb-6">
-        What's your content goal today?
-      </h3>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-        {CONTENT_GOALS.map((goal) => (
-          <button
-            key={goal.id}
-            onClick={() => {
-              handleProfileUpdate('contentGoal', goal.id);
-              setCurrentStep('platforms');
-            }}
-            className={`p-4 rounded-xl border-2 transition-all duration-200 text-left ${
-              userProfile.contentGoal === goal.id
-                ? 'border-bette-blush-500 bg-bette-blush-50'
-                : 'border-bette-charcoal-200 hover:border-bette-blush-300 hover:bg-bette-blush-50'
-            }`}
-          >
-            <h4 className="font-semibold text-bette-charcoal-900 mb-1">
-              {goal.name}
-            </h4>
-            <p className="text-sm text-bette-charcoal-600">
-              {goal.description}
-            </p>
-          </button>
-        ))}
+    <div className="section">
+      <div className="card-luxury max-w-4xl mx-auto animate-slide-up">
+        <h3 className="display-text text-3xl text-vera-black-900 mb-12 text-center">
+          What's your content goal today?
+        </h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {CONTENT_GOALS.map((goal) => (
+            <button
+              key={goal.id}
+              onClick={() => {
+                handleProfileUpdate('contentGoal', goal.id);
+                setCurrentStep('platforms');
+              }}
+              className={`p-8 rounded-2xl border-2 transition-all duration-300 text-left hover:shadow-gentle ${
+                userProfile.contentGoal === goal.id
+                  ? 'border-vera-black-900 bg-vera-black-950 text-vera-white-50'
+                  : 'border-vera-gray-200 hover:border-vera-black-900 hover:bg-vera-gray-50'
+              }`}
+            >
+              <h4 className="display-text text-xl mb-3">
+                {goal.name}
+              </h4>
+              <p className="body-text text-base opacity-80">
+                {goal.description}
+              </p>
+            </button>
+          ))}
+        </div>
       </div>
     </div>
   );
 
   const renderPlatforms = () => (
-    <div className="card-luxury animate-slide-up">
-      <h3 className="luxury-text text-2xl text-bette-charcoal-900 mb-6">
-        Where are you posting today?
-      </h3>
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-        {PLATFORMS.map((platform) => (
-          <button
-            key={platform.id}
-            onClick={() => {
-              const newPlatforms = userProfile.platforms.includes(platform.id)
-                ? userProfile.platforms.filter(p => p !== platform.id)
-                : [...userProfile.platforms, platform.id];
-              handleProfileUpdate('platforms', newPlatforms);
-            }}
-            className={`p-4 rounded-xl border-2 transition-all duration-200 text-center ${
-              userProfile.platforms.includes(platform.id)
-                ? 'border-bette-blush-500 bg-bette-blush-50'
-                : 'border-bette-charcoal-200 hover:border-bette-blush-300 hover:bg-bette-blush-50'
-            }`}
-          >
-            <div className="text-2xl mb-2">{platform.icon}</div>
-            <h4 className="font-semibold text-bette-charcoal-900 text-sm">
-              {platform.name}
-            </h4>
-          </button>
-        ))}
+    <div className="section">
+      <div className="card-luxury max-w-4xl mx-auto animate-slide-up">
+        <h3 className="display-text text-3xl text-vera-black-900 mb-12 text-center">
+          Where are you posting today?
+        </h3>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
+          {PLATFORMS.map((platform) => (
+            <button
+              key={platform.id}
+              onClick={() => {
+                const newPlatforms = userProfile.platforms.includes(platform.id)
+                  ? userProfile.platforms.filter(p => p !== platform.id)
+                  : [...userProfile.platforms, platform.id];
+                handleProfileUpdate('platforms', newPlatforms);
+              }}
+              className={`p-6 rounded-2xl border-2 transition-all duration-300 text-center hover:shadow-gentle ${
+                userProfile.platforms.includes(platform.id)
+                  ? 'border-vera-black-900 bg-vera-black-950 text-vera-white-50'
+                  : 'border-vera-gray-200 hover:border-vera-black-900 hover:bg-vera-gray-50'
+              }`}
+            >
+              <div className="text-3xl mb-3">{platform.icon}</div>
+              <h4 className="display-text text-sm">
+                {platform.name}
+              </h4>
+            </button>
+          ))}
+        </div>
+        <button 
+          onClick={() => setCurrentStep('brand-deepener')}
+          className="btn-primary w-full"
+          disabled={userProfile.platforms.length === 0}
+        >
+          Continue
+          <ArrowRightIcon className="h-5 w-5 ml-2" />
+        </button>
       </div>
-      <button 
-        onClick={() => setCurrentStep('brand-deepener')}
-        className="btn-primary w-full"
-        disabled={userProfile.platforms.length === 0}
-      >
-        Continue
-        <ArrowRightIcon className="h-5 w-5 ml-2" />
-      </button>
     </div>
   );
 
@@ -229,46 +235,48 @@ const DailyPromptGenerator = () => {
     const question = BRAND_DEEPENER_QUESTIONS[currentQuestion];
     
     return (
-      <div className="card-luxury animate-slide-up">
-        <div className="text-center mb-6">
-          <div className="w-12 h-12 bg-bette-gold-500 rounded-full flex items-center justify-center mx-auto mb-4">
-            <span className="text-white font-bold">{currentQuestion + 1}</span>
+      <div className="section">
+        <div className="card-luxury max-w-3xl mx-auto animate-slide-up">
+          <div className="text-center mb-12">
+            <div className="w-16 h-16 bg-vera-accent-500 rounded-full flex items-center justify-center mx-auto mb-6">
+              <span className="display-text text-white font-bold text-xl">{currentQuestion + 1}</span>
+            </div>
+            <h3 className="display-text text-3xl text-vera-black-900 mb-6">
+              {question.question}
+            </h3>
+            <p className="body-text text-lg text-vera-black-600">
+              This helps me create more personalized content for you.
+            </p>
           </div>
-          <h3 className="luxury-text text-2xl text-bette-charcoal-900 mb-4">
-            {question.question}
-          </h3>
-          <p className="text-bette-charcoal-600">
-            This helps me create more personalized content for you.
-          </p>
-        </div>
-        
-        <div className="space-y-4">
-          <textarea
-            placeholder="Share your thoughts..."
-            className="input-field h-32 resize-none"
-            onChange={(e) => {
-              // Store answer temporarily
-              const answer = e.target.value;
-              if (answer.length > 10) {
-                handleBrandDeepenerAnswer(answer);
-              }
-            }}
-          />
+          
+          <div className="space-y-6">
+            <textarea
+              placeholder="Share your thoughts..."
+              className="input-field h-40 resize-none"
+              onChange={(e) => {
+                // Store answer temporarily
+                const answer = e.target.value;
+                if (answer.length > 10) {
+                  handleBrandDeepenerAnswer(answer);
+                }
+              }}
+            />
+          </div>
         </div>
       </div>
     );
   };
 
   const renderGenerating = () => (
-    <div className="card-luxury animate-slide-up">
-      <div className="text-center">
-        <div className="w-16 h-16 bg-gradient-to-r from-bette-blush-500 to-bette-gold-500 rounded-full flex items-center justify-center mx-auto mb-6 animate-pulse">
-          <SparklesIcon className="h-8 w-8 text-white" />
+    <div className="hero-section">
+      <div className="card-luxury max-w-2xl mx-auto text-center animate-fade-in">
+        <div className="w-20 h-20 bg-vera-black-950 rounded-full flex items-center justify-center mx-auto mb-8 animate-pulse">
+          <SparklesIcon className="h-10 w-10 text-vera-white-50" />
         </div>
-        <h3 className="luxury-text text-2xl text-bette-charcoal-900 mb-4">
+        <h3 className="display-text text-3xl text-vera-black-900 mb-6">
           Creating your content strategy...
         </h3>
-        <p className="text-bette-charcoal-600">
+        <p className="body-text text-xl text-vera-black-600">
           Bette is crafting the perfect prompt for your brand.
         </p>
       </div>
@@ -276,31 +284,33 @@ const DailyPromptGenerator = () => {
   );
 
   const renderResult = () => (
-    <div className="card-luxury animate-slide-up">
-      <div className="text-center mb-6">
-        <div className="w-16 h-16 bg-gradient-to-r from-bette-blush-500 to-bette-gold-500 rounded-full flex items-center justify-center mx-auto mb-6">
-          <CheckCircleIcon className="h-8 w-8 text-white" />
+    <div className="section">
+      <div className="card-luxury max-w-3xl mx-auto animate-slide-up">
+        <div className="text-center mb-12">
+          <div className="w-20 h-20 bg-vera-black-950 rounded-full flex items-center justify-center mx-auto mb-8">
+            <CheckCircleIcon className="h-10 w-10 text-vera-white-50" />
+          </div>
+          <h3 className="display-text text-3xl text-vera-black-900 mb-6">
+            Here's your content prompt
+          </h3>
         </div>
-        <h3 className="luxury-text text-2xl text-bette-charcoal-900 mb-4">
-          Here's your content prompt
-        </h3>
-      </div>
-      
-      <div className="bg-bette-charcoal-50 rounded-xl p-6 mb-6">
-        <p className="text-bette-charcoal-800 text-lg leading-relaxed">
-          {generatedPrompt}
-        </p>
-      </div>
-      
-      <div className="flex space-x-4">
-        <button className="btn-secondary flex-1">
-          <CalendarIcon className="h-5 w-5 mr-2" />
-          Schedule Post
-        </button>
-        <button className="btn-primary flex-1">
-          <ClockIcon className="h-5 w-5 mr-2" />
-          Create Now
-        </button>
+        
+        <div className="bg-vera-gray-50 rounded-2xl p-8 mb-12">
+          <p className="body-text text-xl text-vera-black-800 leading-relaxed">
+            {generatedPrompt}
+          </p>
+        </div>
+        
+        <div className="flex space-x-6">
+          <button className="btn-secondary flex-1">
+            <CalendarIcon className="h-5 w-5 mr-2" />
+            Schedule Post
+          </button>
+          <button className="btn-primary flex-1">
+            <ClockIcon className="h-5 w-5 mr-2" />
+            Create Now
+          </button>
+        </div>
       </div>
     </div>
   );
@@ -327,7 +337,7 @@ const DailyPromptGenerator = () => {
   };
 
   return (
-    <div className="max-w-2xl mx-auto p-6">
+    <div>
       {renderCurrentStep()}
     </div>
   );

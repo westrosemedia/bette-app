@@ -26,23 +26,10 @@
 @layer components {
   .btn-primary {
     @apply bg-black hover:bg-gray-900 text-white font-medium py-4 px-8 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5;
-    background-color: #000000 !important;
-    color: #ffffff !important;
-  }
-  
-  .btn-primary:hover {
-    background-color: #1f2937 !important;
   }
   
   .btn-secondary {
     @apply bg-white hover:bg-gray-50 text-gray-900 font-medium py-4 px-8 rounded-xl transition-all duration-300 shadow-md hover:shadow-lg border border-gray-200;
-    background-color: #ffffff !important;
-    color: #111827 !important;
-    border-color: #d1d5db !important;
-  }
-  
-  .btn-secondary:hover {
-    background-color: #f9fafb !important;
   }
   
   .btn-accent {
@@ -55,8 +42,6 @@
   
   .card-luxury {
     @apply bg-white rounded-3xl shadow-xl border border-gray-200 p-12 backdrop-blur-sm;
-    background-color: #ffffff !important;
-    border-color: #d1d5db !important;
   }
   
   .input-field {
@@ -96,8 +81,9 @@
   }
 }
 
-/* Force body background */
-body {
-  background-color: #f9fafb !important;
-  color: #111827 !important;
+@layer utilities {
+  .btn-primary {
+    background-color: #000000 !important;
+    color: #ffffff !important;
+  }
 }

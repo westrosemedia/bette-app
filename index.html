@@ -5,6 +5,16 @@
     <link rel="icon" type="image/svg+xml" href="./assets/vite-DcBtz0py.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>BETTE - Luxury Content Strategist</title>
+    <script>
+      // Unregister service workers to clear old cached CSS/JS
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.getRegistrations().then(function(registrations) {
+          for(let registration of registrations) {
+            registration.unregister();
+          }
+        });
+      }
+    </script>
     <style>
       /* Force correct colors immediately - bypass Tailwind */
       .btn-primary {

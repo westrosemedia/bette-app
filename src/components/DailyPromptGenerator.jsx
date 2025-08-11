@@ -15,9 +15,9 @@ import {
   PLATFORMS 
 } from '../data/betteVoice';
 
-const DailyPromptGenerator = () => {
+const DailyPromptGenerator = ({ userProfile }) => {
   const [currentStep, setCurrentStep] = useState('greeting');
-  const [userProfile, setUserProfile] = useState({
+  const [userProfileData, setUserProfileData] = useState({
     brandTone: '',
     contentGoal: '',
     platforms: [],
@@ -36,10 +36,25 @@ const DailyPromptGenerator = () => {
     // Set random daily greeting
     const randomGreeting = DAILY_GREETINGS[Math.floor(Math.random() * DAILY_GREETINGS.length)];
     setDailyGreeting(randomGreeting);
-  }, []);
+
+    // Load user profile data if available
+    if (userProfile) {
+      setUserProfileData(prev => ({
+        ...prev,
+        brandTone: userProfile.brand_personality?.[0] || '',
+        targetAudience: userProfile.target_audience || '',
+        contentGoal: userProfile.content_goals?.[0] || '',
+        brandVault: {
+          brand_values: userProfile.brand_values || '',
+          brand_voice_examples: userProfile.brand_voice_examples || '',
+          business_type: userProfile.business_type || ''
+        }
+      }));
+    }
+  }, [userProfile]);
 
   const handleProfileUpdate = (field, value) => {
-    setUserProfile(prev => ({
+    setUserProfileData(prev => ({
       ...prev,
       [field]: value
     }));
@@ -47,7 +62,7 @@ const DailyPromptGenerator = () => {
 
   const handleBrandDeepenerAnswer = (answer) => {
     const question = BRAND_DEEPENER_QUESTIONS[currentQuestion];
-    setUserProfile(prev => ({
+    setUserProfileData(prev => ({
       ...prev,
       brandVault: {
         ...prev.brandVault,
@@ -69,7 +84,7 @@ const DailyPromptGenerator = () => {
     
     // Simulate AI generation (replace with actual OpenAI API call)
     setTimeout(() => {
-      const prompt = generatePromptFromProfile(userProfile);
+      const prompt = generatePromptFromProfile(userProfileData);
       setGeneratedPrompt(prompt);
       setIsGenerating(false);
       setCurrentStep('result');
@@ -80,21 +95,57 @@ const DailyPromptGenerator = () => {
     const tone = profile.brandTone || 'sassy';
     const goal = profile.contentGoal || 'engagement';
     const platform = profile.platforms[0] || 'instagram';
+    const businessType = profile.brandVault?.business_type || 'business';
+    const targetAudience = profile.targetAudience || 'your audience';
+    const brandValues = profile.brandVault?.brand_values || '';
+    const voiceExamples = profile.brandVault?.brand_voice_examples || '';
     
+    // Create personalized prompts based on user profile
+    const personalizedPrompts = {
+      coach: {
+        sales: `Listen up, queen. You're not here to play small. Share a client transformation that made you proud (with specific results if you've got 'em). Then tell ${targetAudience} exactly how to work with you and why waiting is costing them money.`,
+        engagement: `Spill the tea on something that's been on your mind lately about coaching. What's a behind-the-scenes moment from your coaching practice that would surprise people? Be real, be bold, be you.`,
+        awareness: `What's the one thing you wish people knew about coaching that most people get wrong? Bust a myth, share your truth, and position yourself as the expert you are.`,
+        authority: `What's something you believe about coaching that most people in your industry disagree with? Take a stand, share your perspective, and show why you're the one to listen to.`,
+        community: `What's the transformation your coaching clients experience when they work with you? Tell a story, share a moment, and invite others into your world.`
+      },
+      consultant: {
+        sales: `Excellence isn't accidental. Share a client transformation that showcases your premium consulting value. Then extend an invitation to ${targetAudience} who are ready to invest in their own transformation.`,
+        engagement: `Behind every successful brand is a story of resilience. Share a moment that shaped your consulting philosophy and invite ${targetAudience} to be part of your journey.`,
+        awareness: `In a world of mediocrity, you choose excellence. Share what sets your consulting approach apart and why ${targetAudience} deserve nothing less than exceptional.`,
+        authority: `Leadership isn't about having all the answers—it's about asking the right questions. Share an insight that positions you as a thought leader in your space.`,
+        community: `Curated experiences for curated people. Share how you're building a community of high-achievers and invite ${targetAudience} to join this exclusive circle.`
+      },
+      creator: {
+        sales: `Your content isn't just content—it's transformation. Share a piece of content that created real change for your audience. Then show ${targetAudience} how to work with you for more of that magic.`,
+        engagement: `What's the story behind your most viral piece of content? Share the real, behind-the-scenes version that your audience never saw.`,
+        awareness: `What's the biggest misconception about content creation that drives you crazy? Set the record straight and show your expertise.`,
+        authority: `What's your unique take on content creation that sets you apart? Share your perspective and why it matters.`,
+        community: `How do you want your content to impact your community? Share your vision and invite others to be part of it.`
+      }
+    };
+
+    // Use business-specific prompts if available, otherwise fall back to tone-based prompts
+    const businessPrompts = personalizedPrompts[businessType];
+    if (businessPrompts && businessPrompts[goal]) {
+      return businessPrompts[goal];
+    }
+
+    // Fallback to tone-based prompts
     const prompts = {
       sassy: {
-        sales: `Listen up, queen. You're not here to play small. Share a client result that made you proud (with numbers if you've got 'em). Then tell your audience exactly how to work with you and why waiting is costing them money.`,
+        sales: `Listen up, queen. You're not here to play small. Share a client result that made you proud (with numbers if you've got 'em). Then tell ${targetAudience} exactly how to work with you and why waiting is costing them money.`,
         engagement: `Spill the tea on something that's been on your mind lately. What's a behind-the-scenes moment from your business that would surprise people? Be real, be bold, be you.`,
         awareness: `What's the one thing you wish people knew about your industry? Bust a myth, share your truth, and position yourself as the expert you are.`,
         authority: `What's something you believe that most people in your industry disagree with? Take a stand, share your perspective, and show why you're the one to listen to.`,
         community: `What's the transformation your clients experience when they work with you? Tell a story, share a moment, and invite others into your world.`
       },
       luxury: {
-        sales: `Excellence isn't accidental. Share a client transformation that showcases your premium value. Then extend an invitation to those ready to invest in their own transformation.`,
-        engagement: `Behind every successful brand is a story of resilience. Share a moment that shaped your business philosophy and invite your audience to be part of your journey.`,
-        awareness: `In a world of mediocrity, you choose excellence. Share what sets your approach apart and why your audience deserves nothing less than exceptional.`,
+        sales: `Excellence isn't accidental. Share a client transformation that showcases your premium value. Then extend an invitation to ${targetAudience} who are ready to invest in their own transformation.`,
+        engagement: `Behind every successful brand is a story of resilience. Share a moment that shaped your business philosophy and invite ${targetAudience} to be part of your journey.`,
+        awareness: `In a world of mediocrity, you choose excellence. Share what sets your approach apart and why ${targetAudience} deserve nothing less than exceptional.`,
         authority: `Leadership isn't about having all the answers—it's about asking the right questions. Share an insight that positions you as a thought leader in your space.`,
-        community: `Curated experiences for curated people. Share how you're building a community of high-achievers and invite others to join this exclusive circle.`
+        community: `Curated experiences for curated people. Share how you're building a community of high-achievers and invite ${targetAudience} to join this exclusive circle.`
       }
     };
 
@@ -139,7 +190,7 @@ const DailyPromptGenerator = () => {
                 setCurrentStep('content-goal');
               }}
               className={`p-8 rounded-2xl border-2 transition-all duration-300 text-left hover:shadow-lg ${
-                userProfile.brandTone === tone.id
+                userProfileData.brandTone === tone.id
                   ? 'border-gray-900 bg-black text-white'
                   : 'border-gray-200 hover:border-gray-900 hover:bg-gray-50'
               }`}
@@ -172,7 +223,7 @@ const DailyPromptGenerator = () => {
                 setCurrentStep('platforms');
               }}
               className={`p-8 rounded-2xl border-2 transition-all duration-300 text-left hover:shadow-lg ${
-                userProfile.contentGoal === goal.id
+                userProfileData.contentGoal === goal.id
                   ? 'border-gray-900 bg-black text-white'
                   : 'border-gray-200 hover:border-gray-900 hover:bg-gray-50'
               }`}
@@ -201,13 +252,13 @@ const DailyPromptGenerator = () => {
             <button
               key={platform.id}
               onClick={() => {
-                const newPlatforms = userProfile.platforms.includes(platform.id)
-                  ? userProfile.platforms.filter(p => p !== platform.id)
-                  : [...userProfile.platforms, platform.id];
+                const newPlatforms = userProfileData.platforms.includes(platform.id)
+                  ? userProfileData.platforms.filter(p => p !== platform.id)
+                  : [...userProfileData.platforms, platform.id];
                 handleProfileUpdate('platforms', newPlatforms);
               }}
               className={`p-6 rounded-2xl border-2 transition-all duration-300 text-center hover:shadow-lg ${
-                userProfile.platforms.includes(platform.id)
+                userProfileData.platforms.includes(platform.id)
                   ? 'border-gray-900 bg-black text-white'
                   : 'border-gray-200 hover:border-gray-900 hover:bg-gray-50'
               }`}
@@ -222,7 +273,7 @@ const DailyPromptGenerator = () => {
         <button 
           onClick={() => setCurrentStep('brand-deepener')}
           className="btn-primary w-full"
-          disabled={userProfile.platforms.length === 0}
+          disabled={userProfileData.platforms.length === 0}
         >
           Continue
           <ArrowRightIcon className="h-5 w-5 ml-2" />

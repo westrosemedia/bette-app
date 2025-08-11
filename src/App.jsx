@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { 
   SparklesIcon,
   ClockIcon, 
@@ -17,11 +17,15 @@ import {
 } from '@heroicons/react/24/outline';
 import DailyPromptGenerator from './components/DailyPromptGenerator';
 import SmartScheduler from './components/SmartScheduler';
+import OnboardingQuiz from './components/OnboardingQuiz';
+import DailyBrandDeepener from './components/DailyBrandDeepener';
 
 function App() {
   const [activeTab, setActiveTab] = useState('daily-prompt');
   const [searchQuery, setSearchQuery] = useState('');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [appState, setAppState] = useState('loading'); // 'loading', 'onboarding', 'daily-deepener', 'main'
+  const [userProfile, setUserProfile] = useState(null);
 
   const navigation = [
     { id: 'daily-prompt', name: 'Daily Prompt', icon: SparklesIcon },
@@ -32,10 +36,43 @@ function App() {
     { id: 'achievements', name: 'Achievements', icon: TrophyIcon },
   ];
 
+  useEffect(() => {
+    // Check if user has completed onboarding
+    const onboardingComplete = localStorage.getItem('bette_onboarding_complete');
+    const userProfileData = localStorage.getItem('bette_user_profile');
+    
+    if (!onboardingComplete) {
+      setAppState('onboarding');
+    } else {
+      // Check if daily brand deepener is needed
+      const today = new Date().toISOString().split('T')[0];
+      const dailyCompleted = localStorage.getItem(`bette_daily_${today}`);
+      
+      if (!dailyCompleted) {
+        setAppState('daily-deepener');
+      } else {
+        setAppState('main');
+      }
+      
+      if (userProfileData) {
+        setUserProfile(JSON.parse(userProfileData));
+      }
+    }
+  }, []);
+
+  const handleOnboardingComplete = (profileData) => {
+    setUserProfile(profileData);
+    setAppState('daily-deepener');
+  };
+
+  const handleDailyDeepenerComplete = () => {
+    setAppState('main');
+  };
+
   const renderContent = () => {
     switch (activeTab) {
       case 'daily-prompt':
-        return <DailyPromptGenerator />;
+        return <DailyPromptGenerator userProfile={userProfile} />;
       case 'scheduler':
         return <SmartScheduler />;
       case 'content-vault':
@@ -79,10 +116,36 @@ function App() {
           </div>
         </div>;
       default:
-        return <DailyPromptGenerator />;
+        return <DailyPromptGenerator userProfile={userProfile} />;
     }
   };
 
+  // Loading state
+  if (appState === 'loading') {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-center">
+          <div className="w-16 h-16 bg-black rounded-full flex items-center justify-center mx-auto mb-6">
+            <SparklesIcon className="h-8 w-8 text-white" />
+          </div>
+          <h2 className="display-text text-2xl text-gray-900 mb-4">Loading BETTE</h2>
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-black mx-auto"></div>
+        </div>
+      </div>
+    );
+  }
+
+  // Onboarding quiz
+  if (appState === 'onboarding') {
+    return <OnboardingQuiz onComplete={handleOnboardingComplete} />;
+  }
+
+  // Daily brand deepener
+  if (appState === 'daily-deepener') {
+    return <DailyBrandDeepener onComplete={handleDailyDeepenerComplete} />;
+  }
+
+  // Main app
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hidden div to force Tailwind to generate classes */}
@@ -139,7 +202,9 @@ function App() {
                 <div className="w-10 h-10 bg-black rounded-full flex items-center justify-center">
                   <UserIcon className="h-5 w-5 text-white" />
                 </div>
-                <span className="body-text text-sm font-medium text-gray-700 hidden lg:block">Queen</span>
+                <span className="body-text text-sm font-medium text-gray-700 hidden lg:block">
+                  {userProfile?.business_type ? userProfile.business_type.replace('_', ' ').replace(/\b\w/g, l => l.toUpperCase()) : 'Queen'}
+                </span>
               </div>
 
               {/* Mobile menu button */}

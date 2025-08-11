@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+  
+  body {
+    @apply bg-bette-charcoal-50 text-bette-charcoal-900;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-bette-blush-600 hover:bg-bette-blush-700 text-white font-medium py-3 px-6 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5;
+  }
+  
+  .btn-secondary {
+    @apply bg-bette-charcoal-200 hover:bg-bette-charcoal-300 text-bette-charcoal-800 font-medium py-3 px-6 rounded-lg transition-all duration-200 shadow-md hover:shadow-lg;
+  }
+  
+  .btn-gold {
+    @apply bg-bette-gold-500 hover:bg-bette-gold-600 text-white font-medium py-3 px-6 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5;
+  }
+  
+  .card {
+    @apply bg-white rounded-2xl shadow-lg border border-bette-charcoal-100 p-6 backdrop-blur-sm;
+  }
+  
+  .card-luxury {
+    @apply bg-gradient-to-br from-white to-bette-blush-50 rounded-2xl shadow-xl border border-bette-blush-200 p-8 backdrop-blur-sm;
+  }
+  
+  .input-field {
+    @apply w-full px-4 py-3 border border-bette-charcoal-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-bette-blush-500 focus:border-transparent transition-all duration-200;
+  }
+  
+  .luxury-text {
+    @apply font-luxury font-semibold;
+  }
+  
+  .bette-gradient {
+    @apply bg-gradient-to-r from-bette-blush-500 to-bette-gold-500;
+  }
+  
+  .glass-effect {
+    @apply backdrop-blur-md bg-white/80 border border-white/20;
+  }
+}

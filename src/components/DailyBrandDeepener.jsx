@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import { 
-  SparklesIcon, 
+import {
+  SparklesIcon,
   ArrowRightIcon,
   CheckCircleIcon,
   LightBulbIcon,
@@ -9,7 +9,7 @@ import {
   TrophyIcon,
   StarIcon,
   FireIcon,
-  CrownIcon
+  AcademicCapIcon
 } from '@heroicons/react/24/outline';
 
 const DailyBrandDeepener = ({ onComplete }) => {
@@ -51,7 +51,7 @@ const DailyBrandDeepener = ({ onComplete }) => {
       id: 'future_vision',
       question: "Where do you see your brand in 2 years? What's your vision?",
       category: 'future_vision',
-      icon: CrownIcon,
+      icon: AcademicCapIcon,
       placeholder: "Describe your long-term vision for your brand and business..."
     },
     {
@@ -96,9 +96,9 @@ const DailyBrandDeepener = ({ onComplete }) => {
     const today = new Date();
     const dayOfYear = Math.floor((today - new Date(today.getFullYear(), 0, 0)) / (1000 * 60 * 60 * 24));
     const questionIndex = dayOfYear % dailyQuestions.length;
-    
+
     setCurrentQuestion(dailyQuestions[questionIndex]);
-    
+
     // Check if today's question was already answered
     const todayKey = today.toISOString().split('T')[0];
     const answeredToday = localStorage.getItem(`bette_daily_${todayKey}`);
@@ -109,13 +109,13 @@ const DailyBrandDeepener = ({ onComplete }) => {
 
   const handleSubmit = async () => {
     if (!answer.trim() || answer.length < 20) return;
-    
+
     setIsSubmitting(true);
-    
+
     // Save the answer
     const today = new Date().toISOString().split('T')[0];
     const brandVault = JSON.parse(localStorage.getItem('bette_brand_vault') || '{}');
-    
+
     brandVault[currentQuestion.category] = {
       ...brandVault[currentQuestion.category],
       [today]: {
@@ -124,16 +124,16 @@ const DailyBrandDeepener = ({ onComplete }) => {
         timestamp: new Date().toISOString()
       }
     };
-    
+
     localStorage.setItem('bette_brand_vault', JSON.stringify(brandVault));
     localStorage.setItem(`bette_daily_${today}`, 'true');
-    
+
     // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 1500));
-    
+
     setIsSubmitting(false);
     setIsCompleted(true);
-    
+
     if (onComplete) {
       onComplete({
         question: currentQuestion,
@@ -215,14 +215,14 @@ const DailyBrandDeepener = ({ onComplete }) => {
           <h2 className="display-text text-2xl text-gray-900 mb-6 text-center">
             {currentQuestion.question}
           </h2>
-          
+
           <textarea
             value={answer}
             onChange={(e) => setAnswer(e.target.value)}
             placeholder={currentQuestion.placeholder}
             className="w-full h-48 p-6 border border-gray-300 rounded-2xl focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent resize-none body-text text-lg mb-4"
           />
-          
+
           <div className="flex justify-between items-center">
             <span className="text-sm text-gray-500">
               {answer.length} characters
@@ -241,7 +241,7 @@ const DailyBrandDeepener = ({ onComplete }) => {
           >
             Skip for today
           </button>
-          
+
           <button
             onClick={handleSubmit}
             disabled={!answer.trim() || answer.length < 20 || isSubmitting}

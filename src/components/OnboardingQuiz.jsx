@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import { 
-  SparklesIcon, 
+import {
+  SparklesIcon,
   ArrowRightIcon,
   ArrowLeftIcon,
   CheckCircleIcon,
@@ -9,7 +9,7 @@ import {
   TrophyIcon,
   StarIcon,
   FireIcon,
-  CrownIcon,
+  AcademicCapIcon,
   MegaphoneIcon,
   CurrencyDollarIcon,
   EyeIcon,
@@ -43,7 +43,7 @@ const OnboardingQuiz = ({ onComplete }) => {
       subtitle: "Choose the traits that best represent your voice",
       type: 'text',
       placeholder: "Example: Bold. Visionary. No-chill.",
-      icon: CrownIcon
+      icon: AcademicCapIcon
     },
     {
       id: 'signature_phrases',
@@ -99,7 +99,7 @@ const OnboardingQuiz = ({ onComplete }) => {
       subtitle: "The role you want to play in your audience's mind",
       type: 'text',
       placeholder: "Example: As the high-level partner who sees what they need before they do—strategist, creative director, fixer.",
-      icon: CrownIcon
+      icon: AcademicCapIcon
     },
     {
       id: 'content_types',
@@ -213,14 +213,14 @@ const OnboardingQuiz = ({ onComplete }) => {
 
   const handleComplete = async () => {
     setIsLoading(true);
-    
+
     // Simulate saving to backend
     await new Promise(resolve => setTimeout(resolve, 2000));
-    
+
     // Save to localStorage for now (replace with backend call)
     localStorage.setItem('bette_user_profile', JSON.stringify(answers));
     localStorage.setItem('bette_onboarding_complete', 'true');
-    
+
     setIsLoading(false);
     onComplete(answers);
   };
@@ -228,15 +228,15 @@ const OnboardingQuiz = ({ onComplete }) => {
   const canProceed = () => {
     const currentStepData = quizSteps[currentStep];
     const currentAnswer = answers[currentStepData.id];
-    
+
     if (currentStepData.type === 'welcome' || currentStepData.type === 'completion') {
       return true;
     }
-    
+
     if (currentStepData.type === 'text') {
       return currentAnswer && currentAnswer.trim().length > 10;
     }
-    
+
     return false;
   };
 
@@ -281,7 +281,7 @@ const OnboardingQuiz = ({ onComplete }) => {
                 {step.subtitle}
               </p>
             </div>
-            
+
             <textarea
               value={answers[step.id] || ''}
               onChange={(e) => handleAnswer(step.id, e.target.value)}
@@ -318,12 +318,12 @@ const OnboardingQuiz = ({ onComplete }) => {
                   <p className="body-text text-gray-700 mb-4">
                     {answers.brand_personality || 'Not specified'}
                   </p>
-                  
+
                   <h4 className="display-text text-lg text-gray-900 mb-3">Signature Phrases</h4>
                   <p className="body-text text-gray-700 mb-4">
                     {answers.signature_phrases || 'Not specified'}
                   </p>
-                  
+
                   <h4 className="display-text text-lg text-gray-900 mb-3">Ideal Audience</h4>
                   <p className="body-text text-gray-700 mb-4">
                     {answers.ideal_audience || 'Not specified'}
@@ -334,12 +334,12 @@ const OnboardingQuiz = ({ onComplete }) => {
                   <p className="body-text text-gray-700 mb-4">
                     {answers.transformation || 'Not specified'}
                   </p>
-                  
+
                   <h4 className="display-text text-lg text-gray-900 mb-3">Content Positioning</h4>
                   <p className="body-text text-gray-700 mb-4">
                     {answers.content_positioning || 'Not specified'}
                   </p>
-                  
+
                   <h4 className="display-text text-lg text-gray-900 mb-3">Financial Goals</h4>
                   <p className="body-text text-gray-700 mb-4">
                     {answers.financial_goals || 'Not specified'}
@@ -369,7 +369,7 @@ const OnboardingQuiz = ({ onComplete }) => {
             </span>
           </div>
           <div className="w-full bg-gray-200 rounded-full h-2">
-            <div 
+            <div
               className="bg-black h-2 rounded-full transition-all duration-300"
               style={{ width: `${((currentStep + 1) / quizSteps.length) * 100}%` }}
             ></div>

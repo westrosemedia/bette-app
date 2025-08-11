@@ -41,9 +41,9 @@ function App() {
       case 'content-vault':
         return <div className="hero-section">
           <div className="text-center">
-            <PhotoIcon className="h-24 w-24 text-vera-gray-400 mx-auto mb-8" />
-            <h2 className="display-text text-4xl text-vera-black-900 mb-6">Content Vault</h2>
-            <p className="body-text text-xl text-vera-black-600 max-w-2xl mx-auto">
+            <PhotoIcon className="h-24 w-24 text-gray-400 mx-auto mb-8" />
+            <h2 className="display-text text-4xl text-gray-900 mb-6">Content Vault</h2>
+            <p className="body-text text-xl text-gray-600 max-w-2xl mx-auto">
               Upload your brand assets and track usage with editorial precision.
             </p>
           </div>
@@ -51,9 +51,9 @@ function App() {
       case 'analytics':
         return <div className="hero-section">
           <div className="text-center">
-            <ChartBarIcon className="h-24 w-24 text-vera-gray-400 mx-auto mb-8" />
-            <h2 className="display-text text-4xl text-vera-black-900 mb-6">Analytics</h2>
-            <p className="body-text text-xl text-vera-black-600 max-w-2xl mx-auto">
+            <ChartBarIcon className="h-24 w-24 text-gray-400 mx-auto mb-8" />
+            <h2 className="display-text text-4xl text-gray-900 mb-6">Analytics</h2>
+            <p className="body-text text-xl text-gray-600 max-w-2xl mx-auto">
               Track your content performance and goals with refined insights.
             </p>
           </div>
@@ -61,9 +61,9 @@ function App() {
       case 'brand-vault':
         return <div className="hero-section">
           <div className="text-center">
-            <BookOpenIcon className="h-24 w-24 text-vera-gray-400 mx-auto mb-8" />
-            <h2 className="display-text text-4xl text-vera-black-900 mb-6">Brand Vault</h2>
-            <p className="body-text text-xl text-vera-black-600 max-w-2xl mx-auto">
+            <BookOpenIcon className="h-24 w-24 text-gray-400 mx-auto mb-8" />
+            <h2 className="display-text text-4xl text-gray-900 mb-6">Brand Vault</h2>
+            <p className="body-text text-xl text-gray-600 max-w-2xl mx-auto">
               Your brand voice and strategy insights, curated with precision.
             </p>
           </div>
@@ -71,9 +71,9 @@ function App() {
       case 'achievements':
         return <div className="hero-section">
           <div className="text-center">
-            <TrophyIcon className="h-24 w-24 text-vera-gray-400 mx-auto mb-8" />
-            <h2 className="display-text text-4xl text-vera-black-900 mb-6">Achievements</h2>
-            <p className="body-text text-xl text-vera-black-600 max-w-2xl mx-auto">
+            <TrophyIcon className="h-24 w-24 text-gray-400 mx-auto mb-8" />
+            <h2 className="display-text text-4xl text-gray-900 mb-6">Achievements</h2>
+            <p className="body-text text-xl text-gray-600 max-w-2xl mx-auto">
               Celebrate your wins and unlock badges with elegant recognition.
             </p>
           </div>
@@ -84,16 +84,16 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-vera-white-50">
+    <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <header className="glass-effect border-b border-vera-gray-200 sticky top-0 z-50 transition-all duration-300">
+      <header className="glass-effect border-b border-gray-200 sticky top-0 z-50 transition-all duration-300">
         <div className="container-luxury px-6">
           <div className="flex justify-between items-center h-20">
             <div className="flex items-center">
-              <div className="w-10 h-10 bg-vera-black-950 rounded-xl flex items-center justify-center mr-4">
-                <SparklesIcon className="h-6 w-6 text-vera-white-50" />
+              <div className="w-10 h-10 bg-black rounded-xl flex items-center justify-center mr-4">
+                <SparklesIcon className="h-6 w-6 text-white" />
               </div>
-              <h1 className="display-text text-2xl text-vera-black-900">BETTE</h1>
+              <h1 className="display-text text-2xl text-gray-900">BETTE</h1>
             </div>
             
             {/* Desktop Navigation */}
@@ -115,34 +115,34 @@ function App() {
             <div className="flex items-center space-x-4">
               {/* Search */}
               <div className="relative hidden lg:block">
-                <MagnifyingGlassIcon className="h-5 w-5 absolute left-4 top-1/2 transform -translate-y-1/2 text-vera-gray-400" />
+                <MagnifyingGlassIcon className="h-5 w-5 absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" />
                 <input
                   type="text"
                   placeholder="Search..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="pl-12 pr-4 py-3 border border-vera-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-vera-black-900 focus:border-transparent w-64 bg-vera-white-50/80 backdrop-blur-sm"
+                  className="pl-12 pr-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent w-64 bg-white/80 backdrop-blur-sm"
                 />
               </div>
               
               {/* Notifications */}
-              <button className="relative p-3 text-vera-gray-600 hover:text-vera-black-900 transition-colors">
+              <button className="relative p-3 text-gray-600 hover:text-gray-900 transition-colors">
                 <BellIcon className="h-6 w-6" />
-                <span className="absolute top-2 right-2 block h-2 w-2 rounded-full bg-vera-accent-500"></span>
+                <span className="absolute top-2 right-2 block h-2 w-2 rounded-full bg-orange-500"></span>
               </button>
               
               {/* Profile */}
               <div className="flex items-center space-x-3">
-                <div className="w-10 h-10 bg-vera-black-950 rounded-full flex items-center justify-center">
-                  <UserIcon className="h-5 w-5 text-vera-white-50" />
+                <div className="w-10 h-10 bg-black rounded-full flex items-center justify-center">
+                  <UserIcon className="h-5 w-5 text-white" />
                 </div>
-                <span className="body-text text-sm font-medium text-vera-black-700 hidden lg:block">Queen</span>
+                <span className="body-text text-sm font-medium text-gray-700 hidden lg:block">Queen</span>
               </div>
 
               {/* Mobile menu button */}
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="md:hidden p-2 text-vera-gray-600 hover:text-vera-black-900 transition-colors"
+                className="md:hidden p-2 text-gray-600 hover:text-gray-900 transition-colors"
               >
                 {mobileMenuOpen ? (
                   <XMarkIcon className="h-6 w-6" />
@@ -156,7 +156,7 @@ function App() {
 
         {/* Mobile Navigation */}
         {mobileMenuOpen && (
-          <div className="md:hidden border-t border-vera-gray-200 bg-vera-white-50/95 backdrop-blur-md">
+          <div className="md:hidden border-t border-gray-200 bg-white/95 backdrop-blur-md">
             <nav className="px-6 py-4 space-y-2">
               {navigation.map((item) => {
                 const Icon = item.icon;
@@ -169,8 +169,8 @@ function App() {
                     }}
                     className={`w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-left transition-colors ${
                       activeTab === item.id
-                        ? 'bg-vera-black-950 text-vera-white-50'
-                        : 'text-vera-black-700 hover:bg-vera-gray-100'
+                        ? 'bg-black text-white'
+                        : 'text-gray-700 hover:bg-gray-100'
                     }`}
                   >
                     <Icon className="h-5 w-5" />

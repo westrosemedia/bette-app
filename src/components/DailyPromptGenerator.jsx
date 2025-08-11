@@ -104,13 +104,13 @@ const DailyPromptGenerator = () => {
   const renderGreeting = () => (
     <div className="hero-section">
       <div className="card-luxury max-w-2xl mx-auto text-center animate-fade-in">
-        <div className="w-20 h-20 bg-vera-black-950 rounded-full flex items-center justify-center mx-auto mb-8">
-          <SparklesIcon className="h-10 w-10 text-vera-white-50" />
+        <div className="w-20 h-20 bg-black rounded-full flex items-center justify-center mx-auto mb-8">
+          <SparklesIcon className="h-10 w-10 text-white" />
         </div>
-        <h2 className="display-text text-4xl text-vera-black-900 mb-6">
+        <h2 className="display-text text-4xl text-gray-900 mb-6">
           {dailyGreeting}
         </h2>
-        <p className="body-text text-xl text-vera-black-600 mb-12 leading-relaxed">
+        <p className="body-text text-xl text-gray-600 mb-12 leading-relaxed">
           Let's create some fire content together. I need to know a few things about your brand first.
         </p>
         <button 
@@ -127,7 +127,7 @@ const DailyPromptGenerator = () => {
   const renderBrandTone = () => (
     <div className="section">
       <div className="card-luxury max-w-4xl mx-auto animate-slide-up">
-        <h3 className="display-text text-3xl text-vera-black-900 mb-12 text-center">
+        <h3 className="display-text text-3xl text-gray-900 mb-12 text-center">
           What's your brand voice?
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -138,10 +138,10 @@ const DailyPromptGenerator = () => {
                 handleProfileUpdate('brandTone', tone.id);
                 setCurrentStep('content-goal');
               }}
-              className={`p-8 rounded-2xl border-2 transition-all duration-300 text-left hover:shadow-gentle ${
+              className={`p-8 rounded-2xl border-2 transition-all duration-300 text-left hover:shadow-lg ${
                 userProfile.brandTone === tone.id
-                  ? 'border-vera-black-900 bg-vera-black-950 text-vera-white-50'
-                  : 'border-vera-gray-200 hover:border-vera-black-900 hover:bg-vera-gray-50'
+                  ? 'border-gray-900 bg-black text-white'
+                  : 'border-gray-200 hover:border-gray-900 hover:bg-gray-50'
               }`}
             >
               <h4 className="display-text text-xl mb-3">
@@ -160,7 +160,7 @@ const DailyPromptGenerator = () => {
   const renderContentGoal = () => (
     <div className="section">
       <div className="card-luxury max-w-4xl mx-auto animate-slide-up">
-        <h3 className="display-text text-3xl text-vera-black-900 mb-12 text-center">
+        <h3 className="display-text text-3xl text-gray-900 mb-12 text-center">
           What's your content goal today?
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -171,10 +171,10 @@ const DailyPromptGenerator = () => {
                 handleProfileUpdate('contentGoal', goal.id);
                 setCurrentStep('platforms');
               }}
-              className={`p-8 rounded-2xl border-2 transition-all duration-300 text-left hover:shadow-gentle ${
+              className={`p-8 rounded-2xl border-2 transition-all duration-300 text-left hover:shadow-lg ${
                 userProfile.contentGoal === goal.id
-                  ? 'border-vera-black-900 bg-vera-black-950 text-vera-white-50'
-                  : 'border-vera-gray-200 hover:border-vera-black-900 hover:bg-vera-gray-50'
+                  ? 'border-gray-900 bg-black text-white'
+                  : 'border-gray-200 hover:border-gray-900 hover:bg-gray-50'
               }`}
             >
               <h4 className="display-text text-xl mb-3">
@@ -193,7 +193,7 @@ const DailyPromptGenerator = () => {
   const renderPlatforms = () => (
     <div className="section">
       <div className="card-luxury max-w-4xl mx-auto animate-slide-up">
-        <h3 className="display-text text-3xl text-vera-black-900 mb-12 text-center">
+        <h3 className="display-text text-3xl text-gray-900 mb-12 text-center">
           Where are you posting today?
         </h3>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
@@ -206,10 +206,10 @@ const DailyPromptGenerator = () => {
                   : [...userProfile.platforms, platform.id];
                 handleProfileUpdate('platforms', newPlatforms);
               }}
-              className={`p-6 rounded-2xl border-2 transition-all duration-300 text-center hover:shadow-gentle ${
+              className={`p-6 rounded-2xl border-2 transition-all duration-300 text-center hover:shadow-lg ${
                 userProfile.platforms.includes(platform.id)
-                  ? 'border-vera-black-900 bg-vera-black-950 text-vera-white-50'
-                  : 'border-vera-gray-200 hover:border-vera-black-900 hover:bg-vera-gray-50'
+                  ? 'border-gray-900 bg-black text-white'
+                  : 'border-gray-200 hover:border-gray-900 hover:bg-gray-50'
               }`}
             >
               <div className="text-3xl mb-3">{platform.icon}</div>
@@ -238,13 +238,13 @@ const DailyPromptGenerator = () => {
       <div className="section">
         <div className="card-luxury max-w-3xl mx-auto animate-slide-up">
           <div className="text-center mb-12">
-            <div className="w-16 h-16 bg-vera-accent-500 rounded-full flex items-center justify-center mx-auto mb-6">
+            <div className="w-16 h-16 bg-orange-500 rounded-full flex items-center justify-center mx-auto mb-6">
               <span className="display-text text-white font-bold text-xl">{currentQuestion + 1}</span>
             </div>
-            <h3 className="display-text text-3xl text-vera-black-900 mb-6">
+            <h3 className="display-text text-3xl text-gray-900 mb-6">
               {question.question}
             </h3>
-            <p className="body-text text-lg text-vera-black-600">
+            <p className="body-text text-lg text-gray-600">
               This helps me create more personalized content for you.
             </p>
           </div>
@@ -270,13 +270,13 @@ const DailyPromptGenerator = () => {
   const renderGenerating = () => (
     <div className="hero-section">
       <div className="card-luxury max-w-2xl mx-auto text-center animate-fade-in">
-        <div className="w-20 h-20 bg-vera-black-950 rounded-full flex items-center justify-center mx-auto mb-8 animate-pulse">
-          <SparklesIcon className="h-10 w-10 text-vera-white-50" />
+        <div className="w-20 h-20 bg-black rounded-full flex items-center justify-center mx-auto mb-8 animate-pulse">
+          <SparklesIcon className="h-10 w-10 text-white" />
         </div>
-        <h3 className="display-text text-3xl text-vera-black-900 mb-6">
+        <h3 className="display-text text-3xl text-gray-900 mb-6">
           Creating your content strategy...
         </h3>
-        <p className="body-text text-xl text-vera-black-600">
+        <p className="body-text text-xl text-gray-600">
           Bette is crafting the perfect prompt for your brand.
         </p>
       </div>
@@ -287,16 +287,16 @@ const DailyPromptGenerator = () => {
     <div className="section">
       <div className="card-luxury max-w-3xl mx-auto animate-slide-up">
         <div className="text-center mb-12">
-          <div className="w-20 h-20 bg-vera-black-950 rounded-full flex items-center justify-center mx-auto mb-8">
-            <CheckCircleIcon className="h-10 w-10 text-vera-white-50" />
+          <div className="w-20 h-20 bg-black rounded-full flex items-center justify-center mx-auto mb-8">
+            <CheckCircleIcon className="h-10 w-10 text-white" />
           </div>
-          <h3 className="display-text text-3xl text-vera-black-900 mb-6">
+          <h3 className="display-text text-3xl text-gray-900 mb-6">
             Here's your content prompt
           </h3>
         </div>
         
-        <div className="bg-vera-gray-50 rounded-2xl p-8 mb-12">
-          <p className="body-text text-xl text-vera-black-800 leading-relaxed">
+        <div className="bg-gray-50 rounded-2xl p-8 mb-12">
+          <p className="body-text text-xl text-gray-800 leading-relaxed">
             {generatedPrompt}
           </p>
         </div>

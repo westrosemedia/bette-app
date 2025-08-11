@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
 
+/* Vera Wang aesthetic - deep black, soft white, soft gray */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -11,7 +12,7 @@
   }
   
   body {
-    @apply bg-vera-white-50 text-vera-black-900;
+    @apply bg-gray-50 text-gray-900;
     line-height: 1.6;
   }
 
@@ -24,35 +25,35 @@
 
 @layer components {
   .btn-primary {
-    @apply bg-vera-black-950 hover:bg-vera-black-900 text-vera-white-50 font-medium py-4 px-8 rounded-xl transition-all duration-300 shadow-soft hover:shadow-gentle transform hover:-translate-y-0.5;
+    @apply bg-black hover:bg-gray-900 text-white font-medium py-4 px-8 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5;
   }
   
   .btn-secondary {
-    @apply bg-vera-white-50 hover:bg-vera-white-100 text-vera-black-900 font-medium py-4 px-8 rounded-xl transition-all duration-300 shadow-soft hover:shadow-gentle border border-vera-gray-200;
+    @apply bg-white hover:bg-gray-50 text-gray-900 font-medium py-4 px-8 rounded-xl transition-all duration-300 shadow-md hover:shadow-lg border border-gray-200;
   }
   
   .btn-accent {
-    @apply bg-vera-accent-500 hover:bg-vera-accent-600 text-vera-white-50 font-medium py-4 px-8 rounded-xl transition-all duration-300 shadow-soft hover:shadow-gentle;
+    @apply bg-orange-500 hover:bg-orange-600 text-white font-medium py-4 px-8 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl;
   }
   
   .card {
-    @apply bg-vera-white-50 rounded-2xl shadow-soft border border-vera-gray-100 p-8 backdrop-blur-sm;
+    @apply bg-white rounded-2xl shadow-lg border border-gray-100 p-8 backdrop-blur-sm;
   }
   
   .card-luxury {
-    @apply bg-vera-white-50 rounded-3xl shadow-luxury border border-vera-gray-200 p-12 backdrop-blur-sm;
+    @apply bg-white rounded-3xl shadow-xl border border-gray-200 p-12 backdrop-blur-sm;
   }
   
   .input-field {
-    @apply w-full px-6 py-4 border border-vera-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-vera-black-900 focus:border-transparent transition-all duration-300 bg-vera-white-50;
+    @apply w-full px-6 py-4 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent transition-all duration-300 bg-white;
   }
   
   .display-text {
-    @apply font-display font-semibold;
+    @apply font-serif font-semibold;
   }
   
   .body-text {
-    @apply font-body font-normal;
+    @apply font-sans font-normal;
   }
   
   .hero-section {
@@ -68,14 +69,14 @@
   }
   
   .glass-effect {
-    @apply backdrop-blur-md bg-vera-white-50/90 border border-vera-white-200/50;
+    @apply backdrop-blur-md bg-white/90 border border-white/20;
   }
   
   .nav-link {
-    @apply text-vera-black-700 hover:text-vera-black-900 transition-colors duration-300 font-medium;
+    @apply text-gray-600 hover:text-gray-900 transition-colors duration-300 font-medium;
   }
   
   .nav-link-active {
-    @apply text-vera-black-900 border-b-2 border-vera-black-900;
+    @apply text-gray-900 border-b-2 border-gray-900;
   }
 }

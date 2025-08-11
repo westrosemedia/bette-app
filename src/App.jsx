@@ -37,6 +37,10 @@ function App() {
   ];
 
   useEffect(() => {
+    // TEMPORARY: Clear localStorage to force onboarding for testing
+    localStorage.removeItem('bette_onboarding_complete');
+    localStorage.removeItem('bette_user_profile');
+    
     // Check if user has completed onboarding
     const onboardingComplete = localStorage.getItem('bette_onboarding_complete');
     const userProfileData = localStorage.getItem('bette_user_profile');
@@ -203,7 +207,7 @@ function App() {
                   <UserIcon className="h-5 w-5 text-white" />
                 </div>
                 <span className="body-text text-sm font-medium text-gray-700 hidden lg:block">
-                  {userProfile?.business_type ? userProfile.business_type.replace('_', ' ').replace(/\b\w/g, l => l.toUpperCase()) : 'Queen'}
+                  {userProfile?.business_type ? userProfile.business_type.replace('_', ' ').replace(/\b\w/g, l => l.toUpperCase()) : 'User'}
                 </span>
               </div>
 
